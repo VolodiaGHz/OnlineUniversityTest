@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spring Security Example </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+<h1>Register new teacher!</h1>
+{{#warning}}
+    {{warning}}
+{{/warning}}
+<form action="/th_registration" method="post" class="col-md-12" >
+    <div><label> Full name : <br><input type="text" name="fullName" placeholder="full name..." required/> </label></div>
+    <br>
+    <div><label> Age : <br> <input type="text" name="age" placeholder="age..." required/> </label></div>
+    <br>
+    <label>Position : <br>
+        <select name="position" id="position">
+            {{#positionList}}
+                <option>{{.}}</option>
+            {{/positionList}}
+        </select>
+    </label>
+    <br>
+    <br>
+    <div><label> Email : <br> <input type="text" name="email" placeholder="email..." required/> </label></div>
+    <br>
+    <div><label> Password: <br> <input type="password" name="password"  placeholder="password..." required/> </label></div>
+    <br>
+    <div submit-error>
+        <template type="amp-mustache">
+            field must not be empty
+        </template>
+    </div>
+    <input type="hidden" , name="_csrf" value="{{_csrf.token}}"/>
+    <br>
+    <div><input type="submit" value="Sign Up"/></div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="col-md-12">
+    {{#userInfo}}
+        <label><strong>Full name :</strong>
+            <h2>{{fullName}}</h2></label><br>
+        <label><strong>Position :</strong>
+            <h2>{{position}}</h2></label><br>
+    {{/userInfo}}
+
+    <div>
+        <h5>Go to main page!</h5>
+        <a href="/">Return to main page</a>
+    </div>
+    <hr>
+    <form action="/logout" method="post">
+        <input type="hidden" , name="_csrf" value="{{_csrf.token}}"/>
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <div class="col-md-12">
+        {{#info}}
+            <hr>
+            <div>
+                <div>
+                    <form action="/acceptLesson" method="post">
+                        <h1>{{subject}}</h1>
+                        <h3>Date: {{date}}</h3>
+                        <h3>Time: {{time}}</h3>
+                        <h3 id="duration">Duration: {{duration}}</h3>
+                        <h3>Price: {{price}}$</h3>
+                        <h3>Student: {{studentFullName}}</h3>
+                        <br>
+                        <h2>Accept/Decline</h2>
+                        <input type="hidden" , name="id" value="{{id}}"/>
+                        <select name="status" id="status">
+                            <option>accept</option>
+                            <option>decline</option>
+                        </select>
+                        <br>
+                        <input type="hidden" , name="_csrf" value="{{_csrf.token}}"/>
+                        <div><input type="submit" value="Agree"/></div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+        {{/info}}
+
+    </div>
+    <div class="col-md-12">
+        <h1>Create new Lesson</h1>
+        {{#warning}}
+            {{warning}}
+        {{/warning}}
+        <form action="/createLesson" method="post">
+            <div><label> Date : <br><input type="date" name="date" required/> </label></div>
+            <div><label> Time : <br> <input type="time" name="time"required/> </label></div>
+            <div><label> Duration/price : <br>
+                <select name="price" id="price">
+                    {{#price}}
+                        <option value="{{price}}">duration: {{duration}}/price: {{price}}</option>
+                    {{/price}}
+                </select>
+            </label></div>
+            <br>
+            <div submit-error>
+                <template type="amp-mustache">
+                    field must not be empty
+                </template>
+            </div>
+            <input type="hidden" , name="_csrf" value="{{_csrf.token}}"/>
+            <div><input type="submit" value="Agree"/></div>
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+</body>
+</html>
